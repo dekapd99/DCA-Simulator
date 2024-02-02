@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A9AAD932B6FCA4800431F95 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AAD922B6FCA4800431F95 /* APIService.swift */; };
+		2A9AAD952B6FCC9800431F95 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */; };
 		2AFAA5F82B6C87B5001469AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAA5F72B6C87B5001469AA /* AppDelegate.swift */; };
 		2AFAA5FA2B6C87B5001469AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAA5F92B6C87B5001469AA /* SceneDelegate.swift */; };
 		2AFAA5FC2B6C87B5001469AA /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAA5FB2B6C87B5001469AA /* SearchTableViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A9AAD922B6FCA4800431F95 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		2AFAA5F42B6C87B5001469AA /* DCA-Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DCA-Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AFAA5F72B6C87B5001469AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AFAA5F92B6C87B5001469AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +47,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A9AAD912B6FCA3D00431F95 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A9AAD922B6FCA4800431F95 /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A9AAD962B6FCC9B00431F95 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2AFAA5EB2B6C87B5001469AA = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +82,7 @@
 		2AFAA5F62B6C87B5001469AA /* DCA-Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				2A9AAD912B6FCA3D00431F95 /* Service */,
 				2AFAA6122B6C9182001469AA /* Controller */,
 				2AFAA6112B6C9178001469AA /* View */,
 				2AFAA5F72B6C87B5001469AA /* AppDelegate.swift */,
@@ -70,6 +91,7 @@
 				2AFAA6002B6C87B6001469AA /* Assets.xcassets */,
 				2AFAA6022B6C87B6001469AA /* LaunchScreen.storyboard */,
 				2AFAA6052B6C87B6001469AA /* Info.plist */,
+				2A9AAD962B6FCC9B00431F95 /* Model */,
 			);
 			path = "DCA-Simulator";
 			sourceTree = "<group>";
@@ -170,6 +192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AFAA5FC2B6C87B5001469AA /* SearchTableViewController.swift in Sources */,
+				2A9AAD932B6FCA4800431F95 /* APIService.swift in Sources */,
+				2A9AAD952B6FCC9800431F95 /* SearchResultModel.swift in Sources */,
 				2AFAA6142B6C91A5001469AA /* SearchTableViewCell.swift in Sources */,
 				2AFAA5F82B6C87B5001469AA /* AppDelegate.swift in Sources */,
 				2AFAA5FA2B6C87B5001469AA /* SceneDelegate.swift in Sources */,

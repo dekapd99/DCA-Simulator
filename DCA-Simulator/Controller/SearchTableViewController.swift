@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class SearchTableViewController: UITableViewController {
     
@@ -15,13 +16,31 @@ class SearchTableViewController: UITableViewController {
         return sc
     }()
     
+    private let apiService = APIService() /// Publisher (Combine)
+    private var subscribers = Set<AnyCancellable>() /// Subscriber (Combine)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        performSearch()
     }
 
     private func setupNavigationBar() {
         navigationItem.searchController = searchController
+    }
+    
+    private func performSearch() {
+        apiService.fetchSymbolsPublisher(keywords: "S&P500").sink { (completion) in
+                switch completion {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .finished:
+                    break
+                }
+                
+            } receiveValue: { (searchResults) in
+                print(searchResults)
+            }.store(in: &subscribers)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
