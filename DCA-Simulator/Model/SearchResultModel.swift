@@ -1,14 +1,14 @@
 import Foundation
 
 struct SearchResults: Decodable {
-    let items: [SearchResultsModel]
+    let items: [SearchResult]
     
     enum CodingKeys: String, CodingKey {
         case items = "bestMatches"
     }
 }
 
-struct SearchResultsModel: Decodable {
+struct SearchResult: Decodable {
     let symbol: String
     let name: String
     let type: String
@@ -21,7 +21,7 @@ struct SearchResultsModel: Decodable {
         case symbol = "1. symbol"
         case name = "2. name"
         case type = "3. type"
-        case currency = "4. currency"
+        case currency = "8. currency"
     }
 }
 

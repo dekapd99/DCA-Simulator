@@ -12,7 +12,7 @@ struct APIService {
         
     /// Containing 3 API Key because 1 Key can only give you a response of 5 calls per-minute
     /// Needs to be done this way because of Free API Service that has a lot of RESTRICTION
-    let keys = ["B3VMUP5PHUPV39TP", "9NQNF55Q5CWGMQVK", "1VCPO21PJ2IJNMAG"]
+    let keys = ["QLQXFENUCJ0M2CBD", "WDWXRZIJVMMI3K6U", "QN9X9QJBFP76XUC9"]
     
     ///Fetching Symbols from Endpoint API URL
     func fetchSymbolsPublisher(keywords: String) -> AnyPublisher<SearchResults, Error> {
