@@ -1,1 +1,1 @@
-# Noname_yet
+# Dollar Cost Averaging Simulator (DCA Simulator)
