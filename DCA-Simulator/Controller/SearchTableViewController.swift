@@ -1,7 +1,8 @@
 import UIKit
 import Combine
+import MBProgressHUD
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController, UIAnimatable {
     
     private enum Mode {
         case onboarding
@@ -44,15 +45,21 @@ class SearchTableViewController: UITableViewController {
         $searchQuery
             .debounce(for: .milliseconds(750), scheduler: RunLoop.main)
             .sink { [unowned self] (searchQuery) in
+                ///Showing animation when the User wait for 750 ms for the Search Results
+                showLoadingAnimation()
+                
                 self.apiService.fetchSymbolsPublisher(keywords: searchQuery).sink { (completion) in
-                        switch completion {
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        case .finished:
-                            break
-                        }
-                        
-                    } receiveValue: { (searchResults) in
+                    ///Showing animation when the User wait for 750 ms for the Search Results
+                    hideLoadingAnimation()
+                    
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .finished:
+                        break
+                    }
+                    
+                } receiveValue: { (searchResults) in
                         self.searchResults = searchResults
                         self.tableView.reloadData()
                     }.store(in: &subscribers)
@@ -61,9 +68,7 @@ class SearchTableViewController: UITableViewController {
         $mode.sink { [unowned self] (mode) in
             switch mode {
             case .onboarding:
-                let redView = UIView()
-                redView.backgroundColor = .red
-                self.tableView.backgroundView = redView
+                self.tableView.backgroundView = SearchPlaceholderView()
             case .search:
                 self.tableView.backgroundView = nil
             }
