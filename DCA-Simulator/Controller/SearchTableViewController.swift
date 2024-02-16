@@ -45,6 +45,8 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         $searchQuery
             .debounce(for: .milliseconds(750), scheduler: RunLoop.main)
             .sink { [unowned self] (searchQuery) in
+                guard !searchQuery.isEmpty else { return }
+                
                 ///Showing animation when the User wait for 750 ms for the Search Results
                 showLoadingAnimation()
                 
@@ -88,6 +90,10 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showCalculator", sender: nil)
     }
     
 }
