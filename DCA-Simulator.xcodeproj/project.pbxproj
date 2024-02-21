@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A6C26D32B7E4CDF00B419BD /* SearchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D22B7E4CDF00B419BD /* SearchPlaceholderView.swift */; };
 		2A6C26D62B7E518B00B419BD /* UIAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D52B7E518B00B419BD /* UIAnimatable.swift */; };
+		2A6C26D82B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */; };
 		2A9AAD932B6FCA4800431F95 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AAD922B6FCA4800431F95 /* APIService.swift */; };
 		2A9AAD952B6FCC9800431F95 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */; };
 		2AFAA5F82B6C87B5001469AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAA5F72B6C87B5001469AA /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		2A6C26D22B7E4CDF00B419BD /* SearchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderView.swift; sourceTree = "<group>"; };
 		2A6C26D52B7E518B00B419BD /* UIAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAnimatable.swift; path = "DCA-Simulator/Assets.xcassets/UIAnimatable.swift"; sourceTree = SOURCE_ROOT; };
+		2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMonthlyAdjustedModel.swift; sourceTree = "<group>"; };
 		2A9AAD922B6FCA4800431F95 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		2AFAA5F42B6C87B5001469AA /* DCA-Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DCA-Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */,
+				2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				2A9AAD952B6FCC9800431F95 /* SearchResultModel.swift in Sources */,
 				2AFAA6142B6C91A5001469AA /* SearchTableViewCell.swift in Sources */,
 				2AFAA5F82B6C87B5001469AA /* AppDelegate.swift in Sources */,
+				2A6C26D82B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift in Sources */,
 				2AFAA5FA2B6C87B5001469AA /* SceneDelegate.swift in Sources */,
 				2A6C26D32B7E4CDF00B419BD /* SearchPlaceholderView.swift in Sources */,
 			);

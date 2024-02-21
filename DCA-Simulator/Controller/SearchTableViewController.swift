@@ -45,6 +45,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         $searchQuery
             .debounce(for: .milliseconds(750), scheduler: RunLoop.main)
             .sink { [unowned self] (searchQuery) in
+                ///Preventing searchQuery results to be nil: fixes bug whenever user open the apps it will be showing loading animation
                 guard !searchQuery.isEmpty else { return }
                 
                 ///Showing animation when the User wait for 750 ms for the Search Results
@@ -93,7 +94,27 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showCalculator", sender: nil)
+        if let searchResults = self.searchResults {
+            let symbol = searchResults.items[indexPath.item].symbol
+            handleSelection(for: symbol)
+        }
+    }
+    
+    private func handleSelection(for symbol: String) {
+        
+        ///MAKING API CALL
+        apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol).sink { (completionResult) in
+            switch completionResult {
+            case .failure(let error):
+                print(error)
+            case .finished: break
+            }
+        } receiveValue: { (timeSeriesMonthlyAdjusted) in
+            print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
+        }.store(in: &subscribers)
+
+        
+//        performSegue(withIdentifier: "showCalculator", sender: nil)
     }
     
 }
