@@ -51,9 +51,9 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
                 ///Showing animation when the User wait for 750 ms for the Search Results
                 showLoadingAnimation()
                 
-                self.apiService.fetchSymbolsPublisher(keywords: searchQuery).sink { (completion) in
+                self.apiService.fetchSymbolsPublisher(keywords: searchQuery).sink { [weak self] (completion) in
                     ///Showing animation when the User wait for 750 ms for the Search Results
-                    hideLoadingAnimation()
+                    self?.hideLoadingAnimation()
                     
                     switch completion {
                     case .failure(let error):
@@ -95,26 +95,41 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let searchResults = self.searchResults {
-            let symbol = searchResults.items[indexPath.item].symbol
-            handleSelection(for: symbol)
+            let searchResult = searchResults.items[indexPath.item]
+            let symbol = searchResult.symbol
+            handleSelection(for: symbol, searchResult: searchResult)
         }
     }
     
-    private func handleSelection(for symbol: String) {
+    private func handleSelection(for symbol: String, searchResult: SearchResult) {
+        showLoadingAnimation()
         
         ///MAKING API CALL
-        apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol).sink { (completionResult) in
+        apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol).sink { [weak self] (completionResult) in
+            self?.hideLoadingAnimation()
+            
             switch completionResult {
             case .failure(let error):
                 print(error)
             case .finished: break
             }
-        } receiveValue: { (timeSeriesMonthlyAdjusted) in
-            print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
+        } receiveValue: { [weak self] (timeSeriesMonthlyAdjusted) in
+            self?.hideLoadingAnimation()
+            
+            let asset = AssetModel(searchResult: searchResult, timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted)
+            self?.performSegue(withIdentifier: "showCalculator", sender: asset)
+            ///print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
         }.store(in: &subscribers)
-
         
-//        performSegue(withIdentifier: "showCalculator", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        ///Ensuring the Identifier is showing Calculator, Ensuring the Navigation Destination to show the CalculatorTableViewController, and Ensuring show the Asset
+        if segue.identifier == "showCalculator",
+            let destination = segue.destination as? CalculatorTableViewController,
+            let asset = sender as? AssetModel {
+                destination.asset = asset
+        }
     }
     
 }

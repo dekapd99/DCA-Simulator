@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="93.89312977099236" y="-337.32394366197184"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Calculator Table View Controller-->
         <scene sceneID="Rt0-YN-Mw9">
             <objects>
-                <tableViewController id="cGW-zm-V8Z" sceneMemberID="viewController">
+                <tableViewController id="cGW-zm-V8Z" customClass="CalculatorTableViewController" customModule="DCA_Simulator" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Dre-Rg-DDv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,16 +350,10 @@
                                                                     <rect key="frame" x="0.0" y="32" width="361" height="14"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Initial date of investment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tA-FF-gvT">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="14"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="14"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="14" id="o9n-lb-tlx"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(USD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wt4-FC-0hz">
-                                                                            <rect key="frame" x="143" y="0.0" width="218" height="14"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -392,6 +386,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="zBL-Gv-n8f"/>
                     <connections>
+                        <outlet property="investmentAmountCurrencyLabel" destination="tV8-en-vR0" id="fca-fa-79z"/>
+                        <outlet property="nameLabel" destination="rn4-OA-Fbn" id="vOQ-Gi-ggv"/>
+                        <outlet property="symbolLabel" destination="Dop-fD-hnt" id="ipN-So-cfz"/>
+                        <outletCollection property="currencyLabels" destination="zi4-V7-khj" collectionClass="NSMutableArray" id="Wfn-aD-Ewf"/>
+                        <outletCollection property="currencyLabels" destination="nsd-wa-LFf" collectionClass="NSMutableArray" id="g0b-ZX-8em"/>
+                        <outletCollection property="currencyLabels" destination="Xgb-tn-wOZ" collectionClass="NSMutableArray" id="X0b-gv-kst"/>
                         <segue destination="BzD-DD-epR" kind="show" id="u5m-a5-MX7"/>
                     </connections>
                 </tableViewController>

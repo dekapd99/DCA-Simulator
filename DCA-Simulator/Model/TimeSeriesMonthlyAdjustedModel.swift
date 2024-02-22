@@ -12,7 +12,7 @@ struct MonthInfo {
 
 struct TimeSeriesMonthlyAdjustedModel: Decodable {
     
-    let meta: Meta
+    let meta: Meta ///Meta Data from API
     let timeSeries: [String: OHLC]
     
     enum CodingKeys: String, CodingKey {

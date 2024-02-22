@@ -1,5 +1,6 @@
 import Foundation
 
+///Plural Search Result that contains an Item of Search Result
 struct SearchResults: Decodable {
     let items: [SearchResult]
     
@@ -8,6 +9,7 @@ struct SearchResults: Decodable {
     }
 }
 
+///Single Search Result that contains Search Results Data Type
 struct SearchResult: Decodable {
     let symbol: String
     let name: String
