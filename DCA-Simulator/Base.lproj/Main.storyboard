@@ -96,7 +96,7 @@
         <scene sceneID="Rt0-YN-Mw9">
             <objects>
                 <tableViewController id="cGW-zm-V8Z" customClass="CalculatorTableViewController" customModule="DCA_Simulator" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Dre-Rg-DDv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Dre-Rg-DDv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -278,7 +278,7 @@
                                                                         <constraint firstAttribute="height" constant="36" id="K9Q-uO-udu"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vdB-ft-udw">
                                                                     <rect key="frame" x="0.0" y="32" width="361" height="14"/>
@@ -311,7 +311,7 @@
                                                                         <constraint firstAttribute="height" constant="36" id="mPs-gT-tjU"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9Yg-zk-V8E">
                                                                     <rect key="frame" x="0.0" y="32" width="361" height="14"/>
@@ -386,35 +386,67 @@
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="zBL-Gv-n8f"/>
                     <connections>
+                        <outlet property="initialDateOfInvestmentTextField" destination="j0X-qE-qib" id="VMi-Ze-OyK"/>
+                        <outlet property="initialInvestmentAmountTextField" destination="dYb-Tt-kgS" id="dgc-jg-NYg"/>
                         <outlet property="investmentAmountCurrencyLabel" destination="tV8-en-vR0" id="fca-fa-79z"/>
+                        <outlet property="moneyDollarCostAveragingTextField" destination="MGX-BZ-NoS" id="QTx-Bv-OVU"/>
                         <outlet property="nameLabel" destination="rn4-OA-Fbn" id="vOQ-Gi-ggv"/>
                         <outlet property="symbolLabel" destination="Dop-fD-hnt" id="ipN-So-cfz"/>
                         <outletCollection property="currencyLabels" destination="zi4-V7-khj" collectionClass="NSMutableArray" id="Wfn-aD-Ewf"/>
                         <outletCollection property="currencyLabels" destination="nsd-wa-LFf" collectionClass="NSMutableArray" id="g0b-ZX-8em"/>
                         <outletCollection property="currencyLabels" destination="Xgb-tn-wOZ" collectionClass="NSMutableArray" id="X0b-gv-kst"/>
-                        <segue destination="BzD-DD-epR" kind="show" id="u5m-a5-MX7"/>
+                        <segue destination="BzD-DD-epR" kind="show" identifier="showDateSelection" id="u5m-a5-MX7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fc6-tu-Cnf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1003.8167938931298" y="-337.32394366197184"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Date Selection Table View Controller-->
         <scene sceneID="DX0-TZ-CRa">
             <objects>
-                <tableViewController id="BzD-DD-epR" sceneMemberID="viewController">
+                <tableViewController id="BzD-DD-epR" customClass="DateSelectionTableViewController" customModule="DCA_Simulator" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="170-2X-9B1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gHe-xd-inq">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cellId" rowHeight="64" id="gHe-xd-inq" customClass="DateSelectionTableViewCell" customModule="DCA_Simulator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gHe-xd-inq" id="C6D-9u-jah">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="349" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="UYU-xb-nPa">
+                                            <rect key="frame" x="16" y="8" width="317" height="48"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="December 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="343-2s-FWN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAD-lP-urG">
+                                                    <rect key="frame" x="0.0" y="29" width="317" height="19"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="UYU-xb-nPa" secondAttribute="trailing" constant="16" id="IXr-rv-h52"/>
+                                        <constraint firstAttribute="bottom" secondItem="UYU-xb-nPa" secondAttribute="bottom" constant="8" id="NhE-L1-opW"/>
+                                        <constraint firstItem="UYU-xb-nPa" firstAttribute="leading" secondItem="C6D-9u-jah" secondAttribute="leading" constant="16" id="bdj-eo-OcN"/>
+                                        <constraint firstItem="UYU-xb-nPa" firstAttribute="top" secondItem="C6D-9u-jah" secondAttribute="top" constant="8" id="w8V-wk-1n9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="343-2s-FWN" id="y6F-qS-Ndf"/>
+                                    <outlet property="monthsAgoLabel" destination="DAD-lP-urG" id="U4L-Oa-vbc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -426,7 +458,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JKe-dw-VTb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1923" y="-337"/>
+            <point key="canvasLocation" x="1922.9007633587785" y="-337.32394366197184"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ic1-Pt-P0x">
