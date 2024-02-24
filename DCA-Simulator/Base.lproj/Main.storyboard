@@ -444,7 +444,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateLabel" destination="343-2s-FWN" id="y6F-qS-Ndf"/>
+                                    <outlet property="monthLabel" destination="343-2s-FWN" id="y6F-qS-Ndf"/>
                                     <outlet property="monthsAgoLabel" destination="DAD-lP-urG" id="U4L-Oa-vbc"/>
                                 </connections>
                             </tableViewCell>

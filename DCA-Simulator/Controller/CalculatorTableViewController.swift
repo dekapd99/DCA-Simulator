@@ -15,6 +15,8 @@ class CalculatorTableViewController: UITableViewController {
     
     var asset: AssetModel?
     
+    private var initialDateOfInvestmentIndex: Int? ///Date of Investment Index Selected from Select Date Page
+    
     override func viewDidLoad() {
         ///Break point is added here, to see the results of Asset whenever the Search Results is Clicked
         super.viewDidLoad()
@@ -46,8 +48,28 @@ class CalculatorTableViewController: UITableViewController {
         ///3. Make sure, we are able to cast the sender as TimeSeriesMonthlyAdjustedModel
         if segue.identifier == "showDateSelection",
            let dateSelectionTableViewController = segue.destination as? DateSelectionTableViewController,
-           let timeSeriesMonthlyAdjusted = sender as? TimeSeriesMonthlyAdjustedModel{
+           let timeSeriesMonthlyAdjusted = sender as? TimeSeriesMonthlyAdjustedModel {
+            ///Perform an Assignment in Select Date Page to get the Monthly Date, Selected Index, and Get the Selected Date Index data to Initial Date of Investment
             dateSelectionTableViewController.timeSeriesMonthlyAdjusted = timeSeriesMonthlyAdjusted
+            dateSelectionTableViewController.selectedIndex = initialDateOfInvestmentIndex
+            dateSelectionTableViewController.didSelectDate = { [weak self] index in
+                self?.handleDateSelection(at: index) ///Get the Selected Date Index
+            }
+        }
+    }
+    
+    ///Handling one of the Selection of Date when clicked and then back to CalculatorTableViewController page (Calculator Page)
+    private func handleDateSelection(at index: Int) {
+        ///Dismissing Date Selection (Select Date Page) whenever one of the Date of Investment is Clicked
+        guard navigationController?.visibleViewController is DateSelectionTableViewController else { return }
+        navigationController?.popViewController(animated: true)
+        
+        ///Get Date from timeSeriesMonthlyAdjusted and Put it in the Calculator Page
+        if let monthInfos = asset?.timeSeriesMonthlyAdjusted.getMonthInfos() {
+            initialDateOfInvestmentIndex = index
+            let monthInfo = monthInfos[index]
+            let dateString = monthInfo.date.MMYYFormat
+            initialDateOfInvestmentTextField.text = dateString
         }
     }
     
