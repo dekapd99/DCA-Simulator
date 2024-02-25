@@ -3,9 +3,16 @@ import Combine
 
 class CalculatorTableViewController: UITableViewController {
     
+    ///Properties for DCA Calculates Service (Label)
+    @IBOutlet weak var currentValueLabel: UILabel!
+    @IBOutlet weak var investmentAmountLabel: UILabel!
+    @IBOutlet weak var gainLabel: UILabel!
+    @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var annualizedReturnLabel: UILabel!
+    
     ///Properties for Numeric Keyboard (TextField)
     @IBOutlet weak var initialInvestmentAmountTextField: UITextField!
-    @IBOutlet weak var moneyDollarCostAveragingTextField: UITextField!
+    @IBOutlet weak var monthlyDollarCostAveragingTextField: UITextField!
     @IBOutlet weak var initialDateOfInvestmentTextField: UITextField!
     
     ///Properties for Dynamic UI Label / Text
@@ -18,8 +25,11 @@ class CalculatorTableViewController: UITableViewController {
     var asset: AssetModel?
     
     @Published private var initialDateOfInvestmentIndex: Int? ///Observable Date of Investment Index Selected from Select Date Page
+    @Published private var initialInvestmentAmount: Int? ///Observable Intial Investment Amount from Calculator TextField
+    @Published private var monthlyDollarCostAveragingAmount: Int? ///Observable Dollar Cost Averaging from Calculator TextField
     
     private var subscribers = Set<AnyCancellable>()
+    private let dcaService = DCAService()
     
     override func viewDidLoad() {
         ///Break point is added here, to see the results of Asset whenever the Search Results is Clicked
@@ -43,7 +53,7 @@ class CalculatorTableViewController: UITableViewController {
     ///Setup keyboard view for Done button to close the Keyboard
     private func setupTextField() {
         initialInvestmentAmountTextField.addDoneButton()
-        moneyDollarCostAveragingTextField.addDoneButton()
+        monthlyDollarCostAveragingTextField.addDoneButton()
         initialDateOfInvestmentTextField.delegate = self
     }
     
@@ -59,7 +69,7 @@ class CalculatorTableViewController: UITableViewController {
     ///Observable Object for Intial Date of Investment (Changing the Slider position whenever the Index of Initial Date of Investment is being updated)
     private func observeForm() {
         $initialDateOfInvestmentIndex.sink { [weak self] (index) in
-            ///Guarding the index cannot be nil then convert the Integer  of initialDateOfInvestmentIndex to Float (Data Type)
+            ///Guarding the index cannot be nil then convert the Integer of initialDateOfInvestmentIndex to Float (Data Type)
             guard let index = index else { return }
             self?.dateSlider.value = index.floatValue
             
@@ -71,6 +81,45 @@ class CalculatorTableViewController: UITableViewController {
             ///Printing index number from the Select Date page
             //print(index)
         }.store(in: &subscribers)
+        
+        ///Listening to Value Changes from TextField input in Calculator Page (Investment Amount)
+        NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: initialInvestmentAmountTextField).compactMap({
+            ($0.object as? UITextField)?.text
+        }).sink { [weak self] (text) in
+            self?.initialInvestmentAmount = Int(text) ?? 0 ///Convert the Text to Int and Make the Default Cast equals to 0
+            print("initialInvestmentAmountTextField: \(text)")
+        }.store(in: &subscribers)
+        
+        ///Listening to Value Changes from TextField input in Calculator Page (Dollar Cost Averaging Amount)
+        NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: monthlyDollarCostAveragingTextField).compactMap({
+            ($0.object as? UITextField)?.text
+        }).sink { [weak self] (text) in
+            self?.monthlyDollarCostAveragingAmount = Int(text) ?? 0 ///Convert the Text to Int and Make the Default Cast equals to 0
+            print("monthlyDollarCostAveragingTextField: \(text)")
+        }.store(in: &subscribers)
+        
+        ///Listening to 3 Combine Value input from TextField in Calculator Page
+        Publishers.CombineLatest3($initialInvestmentAmount, $monthlyDollarCostAveragingAmount, $initialDateOfInvestmentIndex).sink { [weak self] (initialInvestmentAmount, monthlyDollarCostAveragingAmount, initialDateOfInvestmentIndex) in
+            
+            ///Guarding the Input Value of the TextFields cannot be Nil (Empty Value / 0)
+            guard let initialInvestmentAmount = initialInvestmentAmount,
+                  let monthlyDollarCostAveragingAmount = monthlyDollarCostAveragingAmount,
+                  let initialDateOfInvestmentIndex = initialDateOfInvestmentIndex else { return }
+                  
+            ///Getting the Result as Double Value for the Investment Amount and DCA Amount
+            let result = self?.dcaService.calculate(initialInvestmentAmount: initialInvestmentAmount.doubleValue,
+                                                    monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount.doubleValue,
+                                                    intialDateOfInvestmentIndex: initialDateOfInvestmentIndex)
+            
+            ///Creating DCA Service Cell Properties
+            self?.currentValueLabel.text = result?.currentValue.stringValue
+            self?.investmentAmountLabel.text = result?.investmentAmount.stringValue
+            self?.gainLabel.text = result?.gain.stringValue
+            self?.yieldLabel.text = result?.yield.stringValue
+            self?.annualizedReturnLabel.text = result?.annualizedReturn.stringValue
+            
+        }.store(in: &subscribers)
+        
     }
     
     ///This Method is Handling the Navigation Destination to DateSelectionTableViewController (Date Selection with segue identifier: showDateSelection)
@@ -81,6 +130,7 @@ class CalculatorTableViewController: UITableViewController {
         if segue.identifier == "showDateSelection",
            let dateSelectionTableViewController = segue.destination as? DateSelectionTableViewController,
            let timeSeriesMonthlyAdjusted = sender as? TimeSeriesMonthlyAdjustedModel {
+            
             ///Perform an Assignment in Select Date Page to get the Monthly Date, Selected Index, and Get the Selected Date Index data to Initial Date of Investment
             dateSelectionTableViewController.timeSeriesMonthlyAdjusted = timeSeriesMonthlyAdjusted
             dateSelectionTableViewController.selectedIndex = initialDateOfInvestmentIndex

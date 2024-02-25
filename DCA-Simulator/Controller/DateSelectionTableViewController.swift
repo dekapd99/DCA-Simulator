@@ -5,6 +5,7 @@ class DateSelectionTableViewController: UITableViewController {
     ///Properties
     var timeSeriesMonthlyAdjusted: TimeSeriesMonthlyAdjustedModel?
     var selectedIndex: Int? ///Date of Investment Index Selected from Select Date Page (nil when there is no index selected)
+    
     ///
     private var monthInfos: [MonthInfo] = []
     
@@ -40,6 +41,7 @@ extension DateSelectionTableViewController {
     
     ///Cell For Row At
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         ///Creating Table View Cell Properties
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! DateSelectionTableViewCell
         let index = indexPath.item
