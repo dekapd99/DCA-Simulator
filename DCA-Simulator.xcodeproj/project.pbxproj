@@ -15,6 +15,7 @@
 		2A6C26DC2B888B4000B419BD /* AssetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26DB2B888B4000B419BD /* AssetModel.swift */; };
 		2A6C26DF2B8893FC00B419BD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26DE2B8893FC00B419BD /* String+Extension.swift */; };
 		2A7B8E292B8B51C900E132AE /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B8E282B8B51C900E132AE /* Date+Extension.swift */; };
+		2A8BD9BB2B8BA93E00AFE870 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8BD9BA2B8BA93E00AFE870 /* Int+Extension.swift */; };
 		2A9AAD932B6FCA4800431F95 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AAD922B6FCA4800431F95 /* APIService.swift */; };
 		2A9AAD952B6FCC9800431F95 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */; };
 		2AD677DB2B8A19CF0016788B /* DateSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD677DA2B8A19CF0016788B /* DateSelectionTableViewController.swift */; };
@@ -38,6 +39,7 @@
 		2A6C26DB2B888B4000B419BD /* AssetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetModel.swift; sourceTree = "<group>"; };
 		2A6C26DE2B8893FC00B419BD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2A7B8E282B8B51C900E132AE /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		2A8BD9BA2B8BA93E00AFE870 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		2A9AAD922B6FCA4800431F95 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2A9AAD942B6FCC9800431F95 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		2AD677DA2B8A19CF0016788B /* DateSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionTableViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				2A6C26DE2B8893FC00B419BD /* String+Extension.swift */,
 				2A27B3652B8A110B00AB7C13 /* UITextField+Extension.swift */,
 				2A7B8E282B8B51C900E132AE /* Date+Extension.swift */,
+				2A8BD9BA2B8BA93E00AFE870 /* Int+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AFAA5FC2B6C87B5001469AA /* SearchTableViewController.swift in Sources */,
+				2A8BD9BB2B8BA93E00AFE870 /* Int+Extension.swift in Sources */,
 				2A6C26D62B7E518B00B419BD /* UIAnimatable.swift in Sources */,
 				2A9AAD932B6FCA4800431F95 /* APIService.swift in Sources */,
 				2A6C26DA2B888A6000B419BD /* CalculatorTableViewController.swift in Sources */,
