@@ -101,18 +101,22 @@ class CalculatorTableViewController: UITableViewController {
         ///Listening to 3 Combine Value input from TextField in Calculator Page
         Publishers.CombineLatest3($initialInvestmentAmount, $monthlyDollarCostAveragingAmount, $initialDateOfInvestmentIndex).sink { [weak self] (initialInvestmentAmount, monthlyDollarCostAveragingAmount, initialDateOfInvestmentIndex) in
             
+            
             ///Guarding the Input Value of the TextFields cannot be Nil (Empty Value / 0)
             guard let initialInvestmentAmount = initialInvestmentAmount,
                   let monthlyDollarCostAveragingAmount = monthlyDollarCostAveragingAmount,
-                  let initialDateOfInvestmentIndex = initialDateOfInvestmentIndex else { return }
+                  let initialDateOfInvestmentIndex = initialDateOfInvestmentIndex,
+                  let asset = self?.asset else { return }
                   
             ///Getting the Result as Double Value for the Investment Amount and DCA Amount
-            let result = self?.dcaService.calculate(initialInvestmentAmount: initialInvestmentAmount.doubleValue,
+            let result = self?.dcaService.calculate(asset: asset,
+                                                    initialInvestmentAmount: initialInvestmentAmount.doubleValue,
                                                     monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount.doubleValue,
                                                     intialDateOfInvestmentIndex: initialDateOfInvestmentIndex)
             
             ///Creating DCA Service Cell Properties
-            self?.currentValueLabel.text = result?.currentValue.stringValue
+            self?.currentValueLabel.backgroundColor = (result?.isProfitable == true) ? .themeGreenShade : .themeRedShade
+            self?.currentValueLabel.text = result?.currentValue.twoDecimalPlaceString
             self?.investmentAmountLabel.text = result?.investmentAmount.stringValue
             self?.gainLabel.text = result?.gain.stringValue
             self?.yieldLabel.text = result?.yield.stringValue

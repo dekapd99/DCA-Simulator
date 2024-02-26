@@ -7,4 +7,9 @@ extension Double {
     var stringValue: String {
         return String(describing: self)
     }
+    
+    ///Converting more than 2 decimal into 2 decimal only
+    var twoDecimalPlaceString: String {
+        return String(format: "%.2f", self)
+    }
 }

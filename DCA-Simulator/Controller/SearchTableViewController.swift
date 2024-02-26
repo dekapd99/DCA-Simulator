@@ -120,7 +120,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
             
             let asset = AssetModel(searchResult: searchResult, timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted)
             self?.performSegue(withIdentifier: "showCalculator", sender: asset)
-            ///print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
+            print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
         }.store(in: &subscribers)
         
     }
