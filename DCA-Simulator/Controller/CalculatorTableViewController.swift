@@ -114,13 +114,22 @@ class CalculatorTableViewController: UITableViewController {
                                                     monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount.doubleValue,
                                                     intialDateOfInvestmentIndex: initialDateOfInvestmentIndex)
             
+            ///Adding Symbol Logic for Gain(+) / Loss (-)
+            let isProfitable = (result?.isProfitable == true)
+            let gainSymbol = isProfitable ? "+" : ""
+            
             ///Creating DCA Service Cell Properties
-            self?.currentValueLabel.backgroundColor = (result?.isProfitable == true) ? .themeGreenShade : .themeRedShade
-            self?.currentValueLabel.text = result?.currentValue.twoDecimalPlaceString
-            self?.investmentAmountLabel.text = result?.investmentAmount.stringValue
-            self?.gainLabel.text = result?.gain.stringValue
-            self?.yieldLabel.text = result?.yield.stringValue
-            self?.annualizedReturnLabel.text = result?.annualizedReturn.stringValue
+            self?.currentValueLabel.backgroundColor = isProfitable ? .themeGreenShade : .themeRedShade
+            self?.currentValueLabel.text = result?.currentValue.currencyFormat
+            
+            self?.investmentAmountLabel.text = result?.investmentAmount.currencyFormat
+            self?.gainLabel.text = result?.gain.toCurrencyFormat(hasDollarSymbol: false, hasDecimalPlaces: false).prefix(withText: gainSymbol)
+            
+            self?.yieldLabel.text = result?.yield.percentageFormat.prefix(withText: gainSymbol).addBrackets()
+            self?.yieldLabel.textColor = isProfitable ? .systemGreen : .systemRed
+            
+            self?.annualizedReturnLabel.text = result?.annualizedReturn.percentageFormat
+            self?.annualizedReturnLabel.textColor = isProfitable ? .systemGreen : .systemRed
             
         }.store(in: &subscribers)
         

@@ -26,11 +26,23 @@ struct DCAService {
         //5. Get to Know if The Investment is Profitable
         let isProfitable = currentValue > investmentAmount
         
+        //6. Get value of Gain / Loss from Investment
+        let gain = currentValue - investmentAmount
+        
+        //7. Get value of Yield = gain / investmentAmount
+        let yield = gain / investmentAmount
+        
+        //8. Calculates Annualized Return with CAGR (Compound Annual Growth Rate)
+        ///https://www.investopedia.com/terms/c/cagr.asp
+        let annualizedReturn = getAnnualizedReturn(currentValue: currentValue,
+                                                   investmentAmount: investmentAmount,
+                                                   intialDateOfInvestmentIndex: intialDateOfInvestmentIndex)
+        
         return .init(currentValue: currentValue,
                      investmentAmount: investmentAmount,
-                     gain: 0,
-                     yield: 0,
-                     annualizedReturn: 0, 
+                     gain: gain,
+                     yield: yield,
+                     annualizedReturn: annualizedReturn,
                      isProfitable: isProfitable)
     }
     
@@ -88,6 +100,21 @@ struct DCAService {
         
         return totalShares
     }
+    
+    ///Computed Function to
+    ///5. Get Annualized Return by Calculates Annualized Return with CAGR (Compound Annual Growth Rate)
+    ///https://www.investopedia.com/terms/c/cagr.asp
+    private func getAnnualizedReturn(currentValue: Double,
+                                     investmentAmount: Double,
+                                     intialDateOfInvestmentIndex: Int) -> Double {
+        
+        let rate = currentValue / investmentAmount ///Calculates the Ending Value over the Beginning Value
+        let years = ((intialDateOfInvestmentIndex + 1) / 12).doubleValue ///+1 because the first month (index) = 0
+
+        ///Return the Result with CAGR with Power (pangkat)
+        ///https://www.investopedia.com/terms/c/cagr.asp
+        return pow(rate, (1 / years)) - 1
+    }
 }
 
 struct DCAResult {
@@ -98,5 +125,3 @@ struct DCAResult {
     let annualizedReturn: Double
     let isProfitable: Bool
 }
-
-
