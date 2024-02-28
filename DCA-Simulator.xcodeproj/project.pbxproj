@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A27B3662B8A110B00AB7C13 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A27B3652B8A110B00AB7C13 /* UITextField+Extension.swift */; };
+		2A37D3302B90A41D002F427D /* DCA_SimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37D32F2B90A41D002F427D /* DCA_SimulatorTests.swift */; };
 		2A6C26D32B7E4CDF00B419BD /* SearchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D22B7E4CDF00B419BD /* SearchPlaceholderView.swift */; };
 		2A6C26D62B7E518B00B419BD /* UIAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D52B7E518B00B419BD /* UIAnimatable.swift */; };
 		2A6C26D82B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */; };
@@ -33,8 +34,20 @@
 		2AFAA6142B6C91A5001469AA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAA6132B6C91A5001469AA /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2A37D3312B90A41D002F427D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AFAA5EC2B6C87B5001469AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AFAA5F32B6C87B5001469AA;
+			remoteInfo = "DCA-Simulator";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2A27B3652B8A110B00AB7C13 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		2A37D32D2B90A41D002F427D /* DCA-SimulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DCA-SimulatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A37D32F2B90A41D002F427D /* DCA_SimulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCA_SimulatorTests.swift; sourceTree = "<group>"; };
 		2A6C26D22B7E4CDF00B419BD /* SearchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderView.swift; sourceTree = "<group>"; };
 		2A6C26D52B7E518B00B419BD /* UIAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAnimatable.swift; path = "DCA-Simulator/Assets.xcassets/UIAnimatable.swift"; sourceTree = SOURCE_ROOT; };
 		2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMonthlyAdjustedModel.swift; sourceTree = "<group>"; };
@@ -61,6 +74,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A37D32A2B90A41D002F427D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AFAA5F12B6C87B5001469AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A37D32E2B90A41D002F427D /* DCA-SimulatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				2A37D32F2B90A41D002F427D /* DCA_SimulatorTests.swift */,
+			);
+			path = "DCA-SimulatorTests";
+			sourceTree = "<group>";
+		};
 		2A6C26D42B7E517200B419BD /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				2AFAA5F62B6C87B5001469AA /* DCA-Simulator */,
+				2A37D32E2B90A41D002F427D /* DCA-SimulatorTests */,
 				2AFAA5F52B6C87B5001469AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				2AFAA5F42B6C87B5001469AA /* DCA-Simulator.app */,
+				2A37D32D2B90A41D002F427D /* DCA-SimulatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +200,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A37D32C2B90A41D002F427D /* DCA-SimulatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A37D3352B90A41D002F427D /* Build configuration list for PBXNativeTarget "DCA-SimulatorTests" */;
+			buildPhases = (
+				2A37D3292B90A41D002F427D /* Sources */,
+				2A37D32A2B90A41D002F427D /* Frameworks */,
+				2A37D32B2B90A41D002F427D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A37D3322B90A41D002F427D /* PBXTargetDependency */,
+			);
+			name = "DCA-SimulatorTests";
+			productName = "DCA-SimulatorTests";
+			productReference = 2A37D32D2B90A41D002F427D /* DCA-SimulatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2AFAA5F32B6C87B5001469AA /* DCA-Simulator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AFAA6082B6C87B6001469AA /* Build configuration list for PBXNativeTarget "DCA-Simulator" */;
@@ -201,6 +249,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					2A37D32C2B90A41D002F427D = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 2AFAA5F32B6C87B5001469AA;
+					};
 					2AFAA5F32B6C87B5001469AA = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -224,11 +276,19 @@
 			projectRoot = "";
 			targets = (
 				2AFAA5F32B6C87B5001469AA /* DCA-Simulator */,
+				2A37D32C2B90A41D002F427D /* DCA-SimulatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2A37D32B2B90A41D002F427D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AFAA5F22B6C87B5001469AA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,6 +302,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A37D3292B90A41D002F427D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A37D3302B90A41D002F427D /* DCA_SimulatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AFAA5F02B6C87B5001469AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,6 +338,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2A37D3322B90A41D002F427D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2AFAA5F32B6C87B5001469AA /* DCA-Simulator */;
+			targetProxy = 2A37D3312B90A41D002F427D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2AFAA5FD2B6C87B5001469AA /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -290,6 +366,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A37D3332B90A41D002F427D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4DH7DFD2TB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DekaPrimatio.DCA-SimulatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DCA-Simulator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DCA-Simulator";
+			};
+			name = Debug;
+		};
+		2A37D3342B90A41D002F427D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4DH7DFD2TB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.DekaPrimatio.DCA-SimulatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DCA-Simulator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DCA-Simulator";
+			};
+			name = Release;
+		};
 		2AFAA6062B6C87B6001469AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -470,6 +584,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A37D3352B90A41D002F427D /* Build configuration list for PBXNativeTarget "DCA-SimulatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A37D3332B90A41D002F427D /* Debug */,
+				2A37D3342B90A41D002F427D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2AFAA5EF2B6C87B5001469AA /* Build configuration list for PBXProject "DCA-Simulator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

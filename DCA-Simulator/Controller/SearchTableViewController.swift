@@ -32,11 +32,17 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupTableView()
         observeForm()
     }
-
+    
     private func setupNavigationBar() {
         navigationItem.searchController = searchController
+    }
+    
+    private func setupTableView() {
+        tableView.isScrollEnabled = false
+        tableView.tableFooterView = UIView()
     }
     
     private func observeForm() {
@@ -63,9 +69,10 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
                     }
                     
                 } receiveValue: { (searchResults) in
-                        self.searchResults = searchResults
-                        self.tableView.reloadData()
-                    }.store(in: &subscribers)
+                    self.searchResults = searchResults
+                    self.tableView.reloadData()
+                    self.tableView.isScrollEnabled = true
+                }.store(in: &subscribers)
             }.store(in: &subscribers)
         
         $mode.sink { [unowned self] (mode) in
@@ -120,7 +127,10 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
             
             let asset = AssetModel(searchResult: searchResult, timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted)
             self?.performSegue(withIdentifier: "showCalculator", sender: asset)
-            print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
+            self?.searchController.searchBar.text = nil ///Make the Search Bar empty whenever going back to the Main Page
+            
+            //            ///Uncomment this Code Below, and make the Console of Current Stocks Price Dissapear
+            //            print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
         }.store(in: &subscribers)
         
     }
@@ -128,9 +138,9 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         ///Ensuring the Identifier is showing Calculator, Ensuring the Navigation Destination to show the CalculatorTableViewController, and Ensuring show the Asset
         if segue.identifier == "showCalculator",
-            let destination = segue.destination as? CalculatorTableViewController,
-            let asset = sender as? AssetModel {
-                destination.asset = asset
+           let destination = segue.destination as? CalculatorTableViewController,
+           let asset = sender as? AssetModel {
+            destination.asset = asset
         }
     }
     
@@ -140,7 +150,7 @@ extension SearchTableViewController: UISearchResultsUpdating, UISearchController
     
     ///Function for searching the result whenever user tapping letters on the keyboard
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchQuery = searchController.searchBar.text, 
+        guard let searchQuery = searchController.searchBar.text,
                 !searchQuery.isEmpty else { return }
         self.searchQuery = searchQuery
     }

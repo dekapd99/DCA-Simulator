@@ -109,11 +109,19 @@ struct DCAService {
                                      intialDateOfInvestmentIndex: Int) -> Double {
         
         let rate = currentValue / investmentAmount ///Calculates the Ending Value over the Beginning Value
-        let years = ((intialDateOfInvestmentIndex + 1) / 12).doubleValue ///+1 because the first month (index) = 0
+        let years = (intialDateOfInvestmentIndex.doubleValue + 1) / 12 ///+1 because the first month (index) = 0
 
         ///Return the Result with CAGR with Power (pangkat)
         ///https://www.investopedia.com/terms/c/cagr.asp
-        return pow(rate, (1 / years)) - 1
+        let result = pow(rate, (1 / years)) - 1
+        return result
+        
+        ///Debugging the Annual Return Bug (Uncomment the Print)
+        /**
+         * The bug caused by this code before: let years = ((intialDateOfInvestmentIndex + 1) / 12).doubleValue ///+1 because the first month (index) = 0
+         * The result of (intialDateOfInvestmentIndex + 1) / 12 is integer and will be Rounded Below if the result = to 0.1 - 0.9, causing the return -100%
+         */
+        //print("rate: \(rate), intialDateOfInvestmentIndex: \(intialDateOfInvestmentIndex), years: \(years), result: \(result)")
     }
 }
 

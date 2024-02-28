@@ -38,10 +38,18 @@ class CalculatorTableViewController: UITableViewController {
         setupTextField()
         observeForm() ///Observing the Initial Date of Investment Changing Value
         setupDateSlider() ///Setup the Number of Elements in Slider (Value)
+        resetViews() ///Reseting the Storyboard Placeholder
+    }
+    
+    ///When the Calculator Page is Open (Immediately display Keyboard I/O inside Initial Investment Amount TextField)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        initialInvestmentAmountTextField.becomeFirstResponder() ///Focusing to this TextField when Calculator Page is Open
     }
     
     ///Setup the View to Display Symbol (Ticker Code), Asset Name, and Currency Label based on the Selected Search Result Data from APIService
     private func setupViews() {
+        navigationItem.title = asset?.searchResult.name
         symbolLabel.text = asset?.searchResult.symbol
         nameLabel.text = asset?.searchResult.name
         investmentAmountCurrencyLabel.text = asset?.searchResult.currency
@@ -101,7 +109,6 @@ class CalculatorTableViewController: UITableViewController {
         ///Listening to 3 Combine Value input from TextField in Calculator Page
         Publishers.CombineLatest3($initialInvestmentAmount, $monthlyDollarCostAveragingAmount, $initialDateOfInvestmentIndex).sink { [weak self] (initialInvestmentAmount, monthlyDollarCostAveragingAmount, initialDateOfInvestmentIndex) in
             
-            
             ///Guarding the Input Value of the TextFields cannot be Nil (Empty Value / 0)
             guard let initialInvestmentAmount = initialInvestmentAmount,
                   let monthlyDollarCostAveragingAmount = monthlyDollarCostAveragingAmount,
@@ -122,7 +129,7 @@ class CalculatorTableViewController: UITableViewController {
             self?.currentValueLabel.backgroundColor = isProfitable ? .themeGreenShade : .themeRedShade
             self?.currentValueLabel.text = result?.currentValue.currencyFormat
             
-            self?.investmentAmountLabel.text = result?.investmentAmount.currencyFormat
+            self?.investmentAmountLabel.text = result?.investmentAmount.toCurrencyFormat(hasDecimalPlaces: false)
             self?.gainLabel.text = result?.gain.toCurrencyFormat(hasDollarSymbol: false, hasDecimalPlaces: false).prefix(withText: gainSymbol)
             
             self?.yieldLabel.text = result?.yield.percentageFormat.prefix(withText: gainSymbol).addBrackets()
@@ -166,6 +173,15 @@ class CalculatorTableViewController: UITableViewController {
             let dateString = monthInfo.date.MMYYFormat
             initialDateOfInvestmentTextField.text = dateString
         }
+    }
+    
+    ///Reset the Current Placeholder from Storyboard to 0 / Default Value
+    private func resetViews() {
+        currentValueLabel.text = "0.00"
+        investmentAmountLabel.text = "0.00"
+        gainLabel.text = "-"
+        yieldLabel.text = "-"
+        annualizedReturnLabel.text = "-"
     }
     
     ///Handling the Value Changes for Initial Investment Date (by Moving the Slider)
