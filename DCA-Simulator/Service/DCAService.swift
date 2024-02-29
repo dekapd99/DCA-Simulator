@@ -1,6 +1,6 @@
 import Foundation
 
-struct DCAService {
+struct DCAService {   
     func calculate(asset: AssetModel,
                    initialInvestmentAmount: Double,
                    monthlyDollarCostAveragingAmount: Double,
@@ -47,15 +47,14 @@ struct DCAService {
     }
     
     //Computed Function below is to Simulates DCA
-    
+
     ///Computed Function for Dollar Cost Averaging Service (Total Investment)
     ///1. Simulation of Total Investing:
-    ///December (investing $1000)
-    ///November (investing $1000)
-    ///October (investing $1000)
-    ///September (investing $5000)
-    ///Total Investing is $8000
-    private func getInvestmentAmount(initialInvestmentAmount: Double,
+    ///November (investing $100)
+    ///October (investing $100)
+    ///September (investing $500)
+    ///Total Investing = $700
+    func getInvestmentAmount(initialInvestmentAmount: Double,
                                      monthlyDollarCostAveragingAmount: Double,
                                      intialDateOfInvestmentIndex: Int) -> Double {
         
@@ -110,7 +109,7 @@ struct DCAService {
         
         let rate = currentValue / investmentAmount ///Calculates the Ending Value over the Beginning Value
         let years = (intialDateOfInvestmentIndex.doubleValue + 1) / 12 ///+1 because the first month (index) = 0
-
+        
         ///Return the Result with CAGR with Power (pangkat)
         ///https://www.investopedia.com/terms/c/cagr.asp
         let result = pow(rate, (1 / years)) - 1
