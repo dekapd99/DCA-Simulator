@@ -1,7 +1,7 @@
 import XCTest ///Library for Unit Test
 @testable import DCA_Simulator ///Testing the Project Target (DCA-Simulator to DCA_Simulator)
 
-final class DCA_SimulatorTests: XCTestCase {
+final class DCAServiceTests: XCTestCase {
 
     ///SUT (System Under Test): Trying to Accessing DCAService (Business Logic)
     var sut: DCAService!

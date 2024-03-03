@@ -29,7 +29,8 @@ class CalculatorTableViewController: UITableViewController {
     @Published private var monthlyDollarCostAveragingAmount: Int? ///Observable Dollar Cost Averaging from Calculator TextField
     
     private var subscribers = Set<AnyCancellable>()
-    private let dcaService = DCAService()
+    private let dcaService = DCAService() ///Initialized the DCA Bussiness Logic
+    private let calculatorPresenter = CalculatorPresenter() ///Initialized the Calculator View Presenter (UI)
     
     override func viewDidLoad() {
         ///Break point is added here, to see the results of Asset whenever the Search Results is Clicked
@@ -114,30 +115,30 @@ class CalculatorTableViewController: UITableViewController {
                   let monthlyDollarCostAveragingAmount = monthlyDollarCostAveragingAmount,
                   let initialDateOfInvestmentIndex = initialDateOfInvestmentIndex,
                   let asset = self?.asset else { return }
-                  
-            ///Getting the Result as Double Value for the Investment Amount and DCA Amount
-            let result = self?.dcaService.calculate(asset: asset,
-                                                    initialInvestmentAmount: initialInvestmentAmount.doubleValue,
-                                                    monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount.doubleValue,
-                                                    intialDateOfInvestmentIndex: initialDateOfInvestmentIndex)
             
-            ///Adding Symbol Logic for Gain(+) / Loss (-)
-            let isProfitable = (result?.isProfitable == true)
-            let gainSymbol = isProfitable ? "+" : ""
+            guard let this  = self else { return }
+            
+            ///Getting the Result as Double Value for the Investment Amount and DCA Amount
+            let result = this.dcaService.calculate(asset: asset,
+                                                   initialInvestmentAmount: initialInvestmentAmount.doubleValue,
+                                                   monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount.doubleValue,
+                                                   intialDateOfInvestmentIndex: initialDateOfInvestmentIndex)
+            
+            let presentation = this.calculatorPresenter.getPresentation(result: result)
+        
             
             ///Creating DCA Service Cell Properties
-            self?.currentValueLabel.backgroundColor = isProfitable ? .themeGreenShade : .themeRedShade
-            self?.currentValueLabel.text = result?.currentValue.currencyFormat
+            this.currentValueLabel.backgroundColor = presentation.currentValueLabelBackgroundColor
+            this.currentValueLabel.text = presentation.currentValue
             
-            self?.investmentAmountLabel.text = result?.investmentAmount.toCurrencyFormat(hasDecimalPlaces: false)
-            self?.gainLabel.text = result?.gain.toCurrencyFormat(hasDollarSymbol: false, hasDecimalPlaces: false).prefix(withText: gainSymbol)
+            this.investmentAmountLabel.text = presentation.investmentAmount
+            this.gainLabel.text = presentation.gain
             
-            self?.yieldLabel.text = result?.yield.percentageFormat.prefix(withText: gainSymbol).addBrackets()
-            self?.yieldLabel.textColor = isProfitable ? .systemGreen : .systemRed
+            this.yieldLabel.text = presentation.yield
+            this.yieldLabel.textColor = presentation.yieldLabelTextColor
             
-            self?.annualizedReturnLabel.text = result?.annualizedReturn.percentageFormat
-            self?.annualizedReturnLabel.textColor = isProfitable ? .systemGreen : .systemRed
-            
+            this.annualizedReturnLabel.text = presentation.annualizedReturn
+            this.annualizedReturnLabel.textColor = presentation.annualizedReturnLabelTextColor
         }.store(in: &subscribers)
         
     }

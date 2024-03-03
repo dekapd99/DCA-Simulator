@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2A27B3662B8A110B00AB7C13 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A27B3652B8A110B00AB7C13 /* UITextField+Extension.swift */; };
-		2A37D3302B90A41D002F427D /* DCA_SimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37D32F2B90A41D002F427D /* DCA_SimulatorTests.swift */; };
+		2A37D3302B90A41D002F427D /* DCAServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A37D32F2B90A41D002F427D /* DCAServiceTests.swift */; };
+		2A5BB1252B95B75F00CBA1FE /* CalculatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BB1242B95B75F00CBA1FE /* CalculatorPresenter.swift */; };
+		2A5BB1272B95BC2000CBA1FE /* CalculatorPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BB1262B95BC2000CBA1FE /* CalculatorPresenterTests.swift */; };
 		2A6C26D32B7E4CDF00B419BD /* SearchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D22B7E4CDF00B419BD /* SearchPlaceholderView.swift */; };
 		2A6C26D62B7E518B00B419BD /* UIAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D52B7E518B00B419BD /* UIAnimatable.swift */; };
 		2A6C26D82B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */; };
@@ -47,7 +49,9 @@
 /* Begin PBXFileReference section */
 		2A27B3652B8A110B00AB7C13 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		2A37D32D2B90A41D002F427D /* DCA-SimulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DCA-SimulatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A37D32F2B90A41D002F427D /* DCA_SimulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCA_SimulatorTests.swift; sourceTree = "<group>"; };
+		2A37D32F2B90A41D002F427D /* DCAServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCAServiceTests.swift; sourceTree = "<group>"; };
+		2A5BB1242B95B75F00CBA1FE /* CalculatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorPresenter.swift; sourceTree = "<group>"; };
+		2A5BB1262B95BC2000CBA1FE /* CalculatorPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorPresenterTests.swift; sourceTree = "<group>"; };
 		2A6C26D22B7E4CDF00B419BD /* SearchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderView.swift; sourceTree = "<group>"; };
 		2A6C26D52B7E518B00B419BD /* UIAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAnimatable.swift; path = "DCA-Simulator/Assets.xcassets/UIAnimatable.swift"; sourceTree = SOURCE_ROOT; };
 		2A6C26D72B876EB300B419BD /* TimeSeriesMonthlyAdjustedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMonthlyAdjustedModel.swift; sourceTree = "<group>"; };
@@ -96,7 +100,8 @@
 		2A37D32E2B90A41D002F427D /* DCA-SimulatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				2A37D32F2B90A41D002F427D /* DCA_SimulatorTests.swift */,
+				2A37D32F2B90A41D002F427D /* DCAServiceTests.swift */,
+				2A5BB1262B95BC2000CBA1FE /* CalculatorPresenterTests.swift */,
 			);
 			path = "DCA-SimulatorTests";
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 			children = (
 				2A9AAD922B6FCA4800431F95 /* APIService.swift */,
 				2A8BD9BC2B8CBCD200AFE870 /* DCAService.swift */,
+				2A5BB1242B95B75F00CBA1FE /* CalculatorPresenter.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -306,7 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A37D3302B90A41D002F427D /* DCA_SimulatorTests.swift in Sources */,
+				2A5BB1272B95BC2000CBA1FE /* CalculatorPresenterTests.swift in Sources */,
+				2A37D3302B90A41D002F427D /* DCAServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +327,7 @@
 				2A8BD9BF2B8CC13600AFE870 /* Double+Extension.swift in Sources */,
 				2A6C26D62B7E518B00B419BD /* UIAnimatable.swift in Sources */,
 				2A9AAD932B6FCA4800431F95 /* APIService.swift in Sources */,
+				2A5BB1252B95B75F00CBA1FE /* CalculatorPresenter.swift in Sources */,
 				2A6C26DA2B888A6000B419BD /* CalculatorTableViewController.swift in Sources */,
 				2A6C26DF2B8893FC00B419BD /* String+Extension.swift in Sources */,
 				2AD677DB2B8A19CF0016788B /* DateSelectionTableViewController.swift in Sources */,

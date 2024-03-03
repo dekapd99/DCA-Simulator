@@ -25,15 +25,18 @@ struct TimeSeriesMonthlyAdjustedModel: Decodable {
         let sortedTimeSeries = timeSeries.sorted(by: { $0.key > $1.key })
         
         ///Get Sorted Month Info
-        sortedTimeSeries.forEach { (dateString, ohlc) in
+        for (dateString, ohlc) in sortedTimeSeries {
             ///DateFormatter to Convert API Date Object "2024-02-21" to Native Swift Date Format
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let date = dateFormatter.date(from: dateString)!
+            ///At first, the code is like this let date = dateFormatter.date(from: dateString)!
+            ///We need to Unwrapped the Force dateString (!) by using guard statement and returning empty array, like below
+            guard let date = dateFormatter.date(from: dateString) else { return [] }
             
             ///Get the Adjusted Open Formula from getAdjustedOpen() function
-            let adjustedOpen = getAdjustedOpen(ohlc: ohlc)
-            let monthInfo = MonthInfo(date: date, adjustedOpen: adjustedOpen, adjustedClose: Double(ohlc.adjustedClose)!)
+            guard let adjustedOpen = getAdjustedOpen(ohlc: ohlc) else { return [] }
+            guard let adjustedClose = ohlc.adjustedClose.toDouble() else { return [] } ///Unwrapped the Force (!)
+            let monthInfo = MonthInfo(date: date, adjustedOpen: adjustedOpen, adjustedClose: adjustedClose)
             monthInfos.append(monthInfo)
         }
         
@@ -45,9 +48,13 @@ struct TimeSeriesMonthlyAdjustedModel: Decodable {
     
     ///Adjusted Open Formula is ...
     // adjusted open = open x (adjusted close / close)
-    private func getAdjustedOpen(ohlc: OHLC) -> Double {
+    private func getAdjustedOpen(ohlc: OHLC) -> Double? {
+        guard let open = ohlc.open.toDouble(),
+                let adjustedClose = ohlc.adjustedClose.toDouble(),
+                let close = ohlc.close.toDouble() else { return nil }
+        
         ///The Formula  above written as below
-        return Double(ohlc.open)! * (Double(ohlc.adjustedClose)! / Double(ohlc.close)!)
+        return open * adjustedClose / close ///Unwrapped the Force (!)
     }
     
 }
