@@ -87,9 +87,9 @@ Here is the file and folder structure for Dollar Cost Averaging Simulator (DCA S
 ## Build With
 
 * [Swift](https://www.swift.org/documentation/)
-* [SwiftUI](https://developer.apple.com/documentation/swiftui/)
+* [UIKit](https://developer.apple.com/documentation/swiftui/)
 * [Xcode](https://developer.apple.com/xcode/)
-* [Figma](https://www.figma.com/file/odx5dhDAoX1v7au5cjEaEv/Dollar Cost Averaging Simulator (DCA Simulator)%3A-A-Native-WatchOS-Sports-App?type=design&node-id=0%3A1&t=VZXdMFKWXjKhfL9f-1)
+* [US Stocks API Service by Alpha Vantage](https://www.alphavantage.co/)
 
 <!-- How to Install -->
 # Installation
@@ -97,7 +97,7 @@ To use this repository, please follow the usage instructions below and make sure
 
 1. Download the .zip file or clone the repository using the following command:
 ```bash
-git clone https://github.com/dekapd99/Dollar Cost Averaging Simulator (DCA Simulator).git
+git clone https://github.com/dekapd99/DCA-Simulator.git
 ```
 
 2. Once the project is downloaded or cloned, open the project in Xcode by clicking on "Open a Project or File".
@@ -113,9 +113,5 @@ MIT License: Copyright (c) 2022
 DISCLAIMER: ASSETS ARE USED FOR EDUCATION PURPOSE ONLY, NOT FOR COMMERCIAL PURPOSES
 
 Assets Source: [SF Symbols 4 Icon](https://developer.apple.com/sf-symbols/)
-
-Figma Projects: [Dollar Cost Averaging Simulator (DCA Simulator) Figma](https://www.figma.com/file/odx5dhDAoX1v7au5cjEaEv/Dollar Cost Averaging Simulator (DCA Simulator)%3A-A-Native-WatchOS-Sports-App?type=design&node-id=0%3A1&t=VZXdMFKWXjKhfL9f-1)
-
-Medium Article: [Dollar Cost Averaging Simulator (DCA Simulator) Medium](https://medium.com/@dekaprimatio/Dollar Cost Averaging Simulator (DCA Simulator)-a-native-watchos-sports-apps-️-️-c1848a0bbba5)
 
 <p align="right">(<a href="#about">back to top</a>)</p>
